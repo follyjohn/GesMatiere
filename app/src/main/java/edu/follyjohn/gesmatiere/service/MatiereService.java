@@ -39,7 +39,6 @@ public class MatiereService {
             if(m.getId() == id) {
                 return true;
             }
-
     }
         return false;
     }

@@ -33,28 +33,26 @@ public class AjouterMatiere extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajouter_matiere);
+
+        Vector<Image> imgData = new Vector<Image>();
+
         Spinner spinner_ens = (Spinner) findViewById(R.id.spinner_enseigant);
         Spinner spinner_img = (Spinner) findViewById(R.id.spinner_image);
+
         ArrayAdapter<CharSequence> adapter_ens = ArrayAdapter.createFromResource(this,
                 R.array.liste_enseigant, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> adapter_img = ArrayAdapter.createFromResource(this,
-                R.array.liste_enseigant, android.R.layout.simple_spinner_item);
+
+        ArrayAdapter<Image> dataAdapter = new ArrayAdapter<Image>(this,android.R.layout.simple_spinner_item, imgData);
+
         adapter_ens.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_ens.setAdapter(adapter_ens);
 
-        Vector<Image> imgData = new Vector<Image>();
+
         imgData.add(new Image("Scrum", R.drawable.scrum));
         imgData.add(new Image("MVC", R.drawable.mvc));
         imgData.add(new Image("Android", R.drawable.android));
-        ArrayAdapter<Image> dataAdapter = new ArrayAdapter<Image>(this,android.R.layout.simple_spinner_item, imgData);
+
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(dataAdapter);
-
-
-
-//        spinner = (Spinner) findViewById(R.id.spinner);
-//        spinner.setAdapter(adapter);
-//        spinner.setOnItemSelectedListener(this);
 
         spinner_img.setAdapter(dataAdapter);
 
@@ -62,8 +60,6 @@ public class AjouterMatiere extends AppCompatActivity {
         searchBtn = findViewById(R.id.buttonSearch);
 
         addBtn.setOnClickListener(v -> {
-//                Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show();
 
             EditText idText = (EditText) findViewById(R.id.editMatId);
             Long id = Long.parseLong(String.valueOf(idText.getText()));
@@ -78,44 +74,40 @@ public class AjouterMatiere extends AppCompatActivity {
 
             int selectedId = rgFac.getCheckedRadioButtonId();
 
-                // find the radiobutton by returned id
-                RadioButton = (RadioButton) findViewById(selectedId);
+            // find the radiobutton by returned id
+            RadioButton = (RadioButton) findViewById(selectedId);
 
-                Boolean fac;
-                fac = String.valueOf(RadioButton.getText()).equals(getResources().getString(R.string.facultatif_label));
+            Boolean isObligatoire = false;
+            isObligatoire = String.valueOf(RadioButton.getText()).equals(getResources().getString(R.string.facultatif_label));
 
-                Spinner imgSpin = (Spinner) findViewById(R.id.spinner_image);
-                Image img = (Image) imgSpin.getSelectedItem();
+            Spinner imgSpin = (Spinner) findViewById(R.id.spinner_image);
+            Image img = (Image) imgSpin.getSelectedItem();
 
 
-                Matiere m = new Matiere();
+            Matiere m = new Matiere();
 
-                m.setId(id);
-                m.setEnseignant(ens);
-                m.setFacultatif(fac);
-                m.setLibelle(libelle);
-                m.setImage(img);
+            m.setId(id);
+            m.setEnseignant(ens);
+            m.setFacultatif(isObligatoire);
+            m.setLibelle(libelle);
+            m.setImage(img);
 
-//            Log.i("dd",m.toString());
-                if (MatiereService.checkIntegrity(m)) {
-                    MatiereService.ajouterMatiere(m);
-                } else {
-                    Snackbar.make(v, "Matiere incorrect", Snackbar.LENGTH_SHORT)
-                            .setAction("Action", null).show();
-                }
-
+            if (MatiereService.checkIntegrity(m)) {
+                MatiereService.ajouterMatiere(m);
+            } else {
+                Snackbar.make(v, "Matiere incorrect", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+            }
 
 //            Log.i("dds", MatiereService.listMatire.toString());
 
-                afficherMatiere(m);
-            
+            afficherMatiere(m);
+
 
         });
 
 
         searchBtn.setOnClickListener(v -> {
-//                Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show();
             EditText idText = (EditText) findViewById(R.id.editMatId);
             Long id = Long.parseLong(String.valueOf(idText.getText()));
 
