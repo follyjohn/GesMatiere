@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">GesMatiere</string>
+    <string name="menu_principale_label">Menu principale</string>
+    <string name="matiere_but_label">Matiere</string>
+    <string name="facultatif_label">Facultatif</string>
+    <string name="obligatoire_label">Obligatoire</string>
+    <string-array name="liste_enseigant">
+        <item>GBODUI Roland</item>
+        <item>AMEVOR Jule</item>
+        <item>EKLOU Kader</item>
+    </string-array>
+</resources>
