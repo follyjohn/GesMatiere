@@ -18,14 +18,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:gravity="center"
-        android:text="Liste des matires"
-        android:textColor="@color/teal_200"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:gravity="center"
+            android:text="Matiere"
+            android:textColor="@color/teal_200"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="match_parent"
@@ -150,8 +150,8 @@
 
             <ImageView
                 android:id="@+id/imageMAt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_weight="1"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -170,11 +170,12 @@
         >
 
         <Button
+            android:id="@+id/retoutBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="12dp"
-            android:text="Ajouter" />
+            android:text="Retour" />
 
         <Space
             android:layout_width="wrap_content"
@@ -187,7 +188,8 @@
             android:layout_weight="1"
             android:backgroundTint="@color/white"
             android:padding="12dp"
-            android:text="Chercher"
+            android:text="Aller au menu"
+            android:id="@+id/menuBtn"
             android:textColor="@color/purple_700" />
     </LinearLayout>
     </LinearLayout>

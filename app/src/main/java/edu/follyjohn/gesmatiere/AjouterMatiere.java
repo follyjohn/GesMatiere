@@ -35,37 +35,17 @@ public class AjouterMatiere extends AppCompatActivity {
         setContentView(R.layout.activity_ajouter_matiere);
         Spinner spinner_ens = (Spinner) findViewById(R.id.spinner_enseigant);
         Spinner spinner_img = (Spinner) findViewById(R.id.spinner_image);
-// Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter_ens = ArrayAdapter.createFromResource(this,
                 R.array.liste_enseigant, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter_img = ArrayAdapter.createFromResource(this,
                 R.array.liste_enseigant, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
         adapter_ens.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
         spinner_ens.setAdapter(adapter_ens);
-//        spinner_img.setAdapter(adapter_img);
-
-//        LinkedHashMap<String, String> mapData = new LinkedHashMap<String, String>();
-//
-//        mapData.put("shamu", "Nexus 6");
-//        mapData.put("fugu", "Nexus Player");
-//        mapData.put("volantisg", "Nexus 9 (LTE)");
-//        mapData.put("volantis", "Nexus 9 (Wi-Fi)");
-//        mapData.put("hammerhead", "Nexus 5 (GSM/LTE)");
-//        mapData.put("razor", "Nexus 7 [2013] (Wi-Fi)");
-//        mapData.put("razorg", "Nexus 7 [2013] (Mobile)");
-//        mapData.put("mantaray", "Nexus 10");
-//        mapData.put("occam", "Nexus 4");
-//        mapData.put("nakasi", "Nexus 7 (Wi-Fi)");
-//        mapData.put("nakasig", "Nexus 7 (Mobile)");
-//        mapData.put("tungsten", "Nexus Q");
 
         Vector<Image> imgData = new Vector<Image>();
-        imgData.add(new Image("dff", R.drawable.ic_launcher_background));
-        imgData.add(new Image("gjf", R.drawable.ic_launcher_background));
-        imgData.add(new Image("eyt", R.drawable.ic_launcher_background));
-        imgData.add(new Image("rey", R.drawable.ic_launcher_background));
+        imgData.add(new Image("Scrum", R.drawable.scrum));
+        imgData.add(new Image("MVC", R.drawable.mvc));
+        imgData.add(new Image("Android", R.drawable.android));
         ArrayAdapter<Image> dataAdapter = new ArrayAdapter<Image>(this,android.R.layout.simple_spinner_item, imgData);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        spinner.setAdapter(dataAdapter);
@@ -98,30 +78,37 @@ public class AjouterMatiere extends AppCompatActivity {
 
             int selectedId = rgFac.getCheckedRadioButtonId();
 
-            // find the radiobutton by returned id
-            RadioButton  = (RadioButton) findViewById(selectedId);
+                // find the radiobutton by returned id
+                RadioButton = (RadioButton) findViewById(selectedId);
 
-            Boolean fac = String.valueOf(RadioButton.getText()).equals(getResources().getString(R.string.facultatif_label));
+                Boolean fac;
+                fac = String.valueOf(RadioButton.getText()).equals(getResources().getString(R.string.facultatif_label));
 
-            Spinner imgSpin = (Spinner) findViewById(R.id.spinner_image);
-            Image img = (Image) imgSpin.getSelectedItem();
+                Spinner imgSpin = (Spinner) findViewById(R.id.spinner_image);
+                Image img = (Image) imgSpin.getSelectedItem();
 
 
-            Matiere m = new Matiere();
+                Matiere m = new Matiere();
 
-            m.setId(id);
-            m.setEnseignant(ens);
-            m.setFacultatif(fac);
-            m.setLibelle(libelle);
-            m.setImage(img);
+                m.setId(id);
+                m.setEnseignant(ens);
+                m.setFacultatif(fac);
+                m.setLibelle(libelle);
+                m.setImage(img);
 
 //            Log.i("dd",m.toString());
+                if (MatiereService.checkIntegrity(m)) {
+                    MatiereService.ajouterMatiere(m);
+                } else {
+                    Snackbar.make(v, "Matiere incorrect", Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null).show();
+                }
 
-            MatiereService.ajouterMatiere(m);
 
 //            Log.i("dds", MatiereService.listMatire.toString());
 
-            afficherMatiere(m);
+                afficherMatiere(m);
+            
 
         });
 

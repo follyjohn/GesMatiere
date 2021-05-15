@@ -4,6 +4,7 @@
     <string name="matiere_but_label">Matiere</string>
     <string name="facultatif_label">Facultatif</string>
     <string name="obligatoire_label">Obligatoire</string>
+    <string name="ajouter_ou_chercher_une_matiere">Ajouter ou chercher une matiere</string>
     <string-array name="liste_enseigant">
         <item>GBODUI Roland</item>
         <item>AMEVOR Jule</item>

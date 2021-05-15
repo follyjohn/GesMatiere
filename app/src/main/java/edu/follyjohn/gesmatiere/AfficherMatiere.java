@@ -2,22 +2,34 @@ package edu.follyjohn.gesmatiere;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.w3c.dom.Text;
 
 import edu.follyjohn.gesmatiere.model.Matiere;
+import edu.follyjohn.gesmatiere.service.MatiereService;
 
 public class AfficherMatiere extends AppCompatActivity {
+
+    Button retourBtn;
+    Button menuBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_afficher_matiere);
 
+        menuBtn = findViewById(R.id.menuBtn);
+        retourBtn = findViewById(R.id.retoutBtn);
         Bundle extras = getIntent().getExtras();
         Matiere matiere = extras.getParcelable("edu.follyjohn.gesmatiere.model.Matiere");
 
@@ -36,8 +48,17 @@ public class AfficherMatiere extends AppCompatActivity {
         ImageView vMatImage  = findViewById(R.id.imageMAt);
         vMatImage.setImageResource(matiere.getImage().getImg());
 
+        retourBtn.setOnClickListener(v -> {
+            Intent afficher_page = new Intent(this, AjouterMatiere.class);
 
+            startActivity(afficher_page);
+        });
 
-        Log.i("matiere: ", matiere.getLibelle());
+        menuBtn.setOnClickListener(v -> {
+            Intent afficher_page = new Intent(this, MatiereList.class);
+
+            startActivity(afficher_page);
+        });
+
     }
 }

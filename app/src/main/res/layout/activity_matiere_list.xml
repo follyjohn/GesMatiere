@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MatiereList">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,5 +40,7 @@
             android:padding="12dp"
             android:text="Ajouter matiere"
             android:textSize="16sp" />
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

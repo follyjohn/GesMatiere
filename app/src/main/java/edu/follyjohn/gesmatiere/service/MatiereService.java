@@ -16,6 +16,13 @@ public class MatiereService {
         if(m.getId() == null){
             return false;
         }
+        if(m.getImage() == null){
+            return false;
+        }if(m.getEnseignant() == null){
+            return false;
+        }if(m.getLibelle() == null){
+            return false;
+        }
 
         Long id = m.getId();
 
