@@ -79,7 +79,7 @@ public class AjouterMatiere extends AppCompatActivity {
         spinner_img.setAdapter(dataAdapter);
 
         addBtn = findViewById(R.id.buttonAdd);
-
+        searchBtn = findViewById(R.id.buttonSearch);
 
         addBtn.setOnClickListener(v -> {
 //                Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -123,6 +123,22 @@ public class AjouterMatiere extends AppCompatActivity {
 
             afficherMatiere(m);
 
+        });
+
+
+        searchBtn.setOnClickListener(v -> {
+//                Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
+            EditText idText = (EditText) findViewById(R.id.editMatId);
+            Long id = Long.parseLong(String.valueOf(idText.getText()));
+
+            if(MatiereService.rechercherParId(id)){
+                Matiere m = MatiereService.selectParId(id);
+                afficherMatiere(m);
+            }else {
+                                Snackbar.make(v, "Auccune matiere trouve", Snackbar.LENGTH_SHORT)
+                .setAction("Action", null).show();
+            }
         });
 
     }

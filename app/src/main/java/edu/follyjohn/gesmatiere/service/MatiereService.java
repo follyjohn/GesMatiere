@@ -12,5 +12,41 @@ public class MatiereService {
         listMatire.add(matiere);
     }
 
+    public static boolean checkIntegrity(Matiere m){
+        if(m.getId() == null){
+            return false;
+        }
+
+        Long id = m.getId();
+
+        for (Matiere ma : listMatire) {
+            if(ma.getId() == id){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean rechercherParId(Long id){
+        for (Matiere m : listMatire) {
+            if(m.getId() == id) {
+                return true;
+            }
+
+    }
+        return false;
+    }
+
+    public static Matiere selectParId(Long id) {
+        Matiere ma = null;
+        for (Matiere m : listMatire) {
+            if (m.getId() == id) {
+                ma = m;
+            }
+        }
+        return ma;
+    }
+
+
 
 }
