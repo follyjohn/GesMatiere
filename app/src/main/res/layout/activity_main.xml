@@ -40,5 +40,6 @@
             android:padding="12dp"
             android:text="@string/matiere_but_label"
             android:textSize="16sp" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

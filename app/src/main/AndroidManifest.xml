@@ -9,17 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GesMatiere">
-        <activity android:name=".MatiereList"></activity>
-        <activity android:name=".RechercherMatiere" />
-        <activity android:name=".AfficherMatiere" />
-        <activity android:name=".AjouterMatiere" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MatiereListItem"></activity>
+        <activity android:name=".MatiereList">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".RechercherMatiere" />
+        <activity android:name=".AfficherMatiere" />
+        <activity android:name=".AjouterMatiere" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
